@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>新シーズン</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    h2 {
+      color: #333;
+      margin-top: 30px;
+    }
+
+    .dropdown {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    select {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>新シーズン</h1>
+</header>
+
+<div class="container">
+
+  <div class="dropdown">
+    <label for="category">🔽 紹介項目:</label>
+    <select id="category">
+      <option value="mob">モブ</option>
+      <option value="boss">ボス</option>
+      <option value="player">プレイヤー</option>
+      <option value="system">追加システム</option>
+    </select>
+  </div>
+
+  <div id="mob" class="section active">
+    <h2>モブ</h2>
+    <p>ゾンビ[♡20 →♡40        ⚔4 → ⚔6]</p>
+    <ul>
+      
+
+    </ul>
+    <p>スケルトン[♡20 →♡25]</p>
+    <ul>
+      <li>15m以内:矢[3点バースト]</li>
+      <li>15~50m:矢[無重力、弾速強化]</li>
+
+    </ul>
+  </div>
+
+  <div id="boss" class="section">
+    <h2>ボス</h2>
+    <p></p>
+    <ul>
+
+    </ul>
+  </div>
+
+  <div id="player" class="section">
+    <h2>プレイヤー</h2>
+    <p></p>
+    <ul>
+
+    </ul>
+  </div>
+
+<div id="system" class="section">
+  <h2>護石システム</h2>
+  <p>闇商人から新鉱石「橋脇護鉄」と経験値をつかうことでお守りにスキルポイントを付与できる</p>
+  
+  <h2>作りかた</h2>
+  <ul>
+    <li>クラフトで護石を作る</li>
+    <li>護石を手に持ち闇商人に話しかける</li>
+    <li>新鉱石「橋脇護鉄」とレベルを使用し錬金する</li>
+    <li>インベントリの左上のマスに置く</li>
+  </ul>
+  
+  <h2>スキル</h2>
+<h3>体力増強</h3>
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>スキル合計値</th>
+      <th>追加ハート</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1.00 ～ 1.99</td><td>＋1♡</td></tr>
+    <tr><td>2.00 ～ 2.99</td><td>＋2♡</td></tr>
+    <tr><td>3.00 ～ 3.99</td><td>＋3♡</td></tr>
+    <tr><td>4.00 ～ 4.99</td><td>＋4♡</td></tr>
+    <tr><td>5.00 ～ 5.99</td><td>＋5♡</td></tr>
+    <tr><td>6.00 ～ 6.99</td><td>＋6♡</td></tr>
+    <tr><td>7.00 以上</td><td>＋7♡</td></tr>
+  </tbody>
+</table>
+
+<h3>近接基礎ダメージ</h3>
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>スキル合計値</th>
+      <th>近接基礎ダメージ上昇</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1.00 ～ 1.99</td><td>＋1⚔</td></tr>
+    <tr><td>2.00 ～ 2.99</td><td>＋2⚔</td></tr>
+    <tr><td>3.00 ～ 3.99</td><td>＋3⚔</td></tr>
+    <tr><td>4.00 ～ 4.99</td><td>＋4⚔</td></tr>
+    <tr><td>5.00 ～ 5.99</td><td>＋5⚔</td></tr>
+    <tr><td>6.00 ～ 6.99</td><td>＋6⚔</td></tr>
+    <tr><td>7.00 以上</td><td>＋7⚔</td></tr>
+  </tbody>
+</table>
+
+<h3>射撃基礎ダメージ</h3>
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>スキル合計値</th>
+      <th>射撃基礎ダメージ上昇</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1.00 ～ 1.99</td><td>＋1🏹</td></tr>
+    <tr><td>2.00 ～ 2.99</td><td>＋2🏹</td></tr>
+    <tr><td>3.00 ～ 3.99</td><td>＋3🏹</td></tr>
+    <tr><td>4.00 ～ 4.99</td><td>＋4🏹</td></tr>
+    <tr><td>5.00 ～ 5.99</td><td>＋5🏹</td></tr>
+    <tr><td>6.00 ～ 6.99</td><td>＋6🏹</td></tr>
+    <tr><td>7.00 以上</td><td>＋7🏹</td></tr>
+  </tbody>
+</table>
+
+
+</div>
+
+
+</div>
+
+<footer>
+  更新日:2025年8月13日<br>
+  @よっわ<br>
+</footer>
+
+<script>
+  const select = document.getElementById('category');
+  const sections = document.querySelectorAll('.section');
+
+  select.addEventListener('change', function () {
+    const value = this.value;
+
+    sections.forEach(section => {
+      section.classList.toggle('active', section.id === value);
+    });
+  });
+</script>
+
+</body>
+</html>
