@@ -70,6 +70,11 @@
       font-size: 14px;
       color: #777;
     }
+    table {
+      
+      border-collapse: collapse; width: 80%; margin-top: 10px; 
+    }
+    th, td { border: 1px solid black; padding: 5px; text-align: center; }
   </style>
 </head>
 <body>
@@ -192,8 +197,9 @@
     <li>克服=>攻撃力アップ</li>
   </ul>
   
-  <p>ブレイズ[♡20 →♡28]</p>
+  <p>ブレイズ</p>
   <ul>
+    <li>♡20 → ♡28</li>
     <li>5連射</li>
     <li>弾速UP</li>
     <li>発射間隔短縮</li>
@@ -277,7 +283,7 @@
 
 
   <div id="player" class="section">
-    <h2>プレイヤー</h2>
+    <h2>追加アイテム</h2>
     <p></p>
     <ul>
 
@@ -345,12 +351,12 @@
   </thead>
   <tbody>
     <tr><td>1.00 ～ 1.99</td><td>＋1🏹</td></tr>
-    <tr><td>2.00 ～ 2.99</td><td>＋2🏹</td></tr>
-    <tr><td>3.00 ～ 3.99</td><td>＋3🏹</td></tr>
-    <tr><td>4.00 ～ 4.99</td><td>＋4🏹</td></tr>
-    <tr><td>5.00 ～ 5.99</td><td>＋5🏹</td></tr>
-    <tr><td>6.00 ～ 6.99</td><td>＋6🏹</td></tr>
-    <tr><td>7.00 以上</td><td>＋7🏹</td></tr>
+    <tr><td>2.00 ～ 2.99</td><td>＋1🏹 弾速+10%</td></tr>
+    <tr><td>3.00 ～ 3.99</td><td>＋2🏹 弾速+20% 重力-5%</td></tr>
+    <tr><td>4.00 ～ 4.99</td><td>＋2🏹 弾速+25% 重力-15%</td></tr>
+    <tr><td>5.00 ～ 5.99</td><td>＋3🏹 弾速+30% 重力-25%</td></tr>
+    <tr><td>6.00 ～ 6.99</td><td>＋3🏹 弾速+40% 重力-40%</td></tr>
+    <tr><td>7.00 以上</td><td>＋4🏹 弾速+50% 重力-100%</td></tr>
   </tbody>
 </table>
 
@@ -389,15 +395,187 @@
     </tr>
   </tbody>
 </table>
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>護石ID</th>
+      <th>レア度確率<br>(コモン / アンコモン / レア / エピック / レジェンダリー / ミシック)</th>
+      <th>初期値</th>
+      <th>加算効果範囲</th>
+      <th>乗算効果範囲</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>しろたえのお守り</td>
+      <td><span style="color:black;">85%</span> / <span style="color:green;">10%</span> / <span style="color:blue;">5%</span> / <span style="color:purple;">0%</span> / <span style="color:gold;">0%</span> / <span style="color:red;">0%</span></td>
+      <td>0.5</td>
+      <td>+0.05 ～ +1.0</td>
+      <td>×1.0 ～ ×1.2</td>
+    </tr>
+    <tr>
+      <td>たまのおのお守り</td>
+      <td><span style="color:black;">70%</span> / <span style="color:green;">15%</span> / <span style="color:blue;">10%</span> / <span style="color:purple;">5%</span> / <span style="color:gold;">0%</span> / <span style="color:red;">0%</span></td>
+      <td>0.6</td>
+      <td>+0.1 ～ +1.0</td>
+      <td>×1.05 ～ ×1.2</td>
+    </tr>
+    <tr>
+      <td>あかねさすお守り</td>
+      <td><span style="color:black;">63%</span> / <span style="color:green;">18%</span> / <span style="color:blue;">13%</span> / <span style="color:purple;">5.5%</span> / <span style="color:gold;">0.5%</span> / <span style="color:red;">0%</span></td>
+      <td>0.7</td>
+      <td>+0.2 ～ +1.0</td>
+      <td>×1.1 ～ ×1.25</td>
+    </tr>
+    <tr>
+      <td>あしひきのお守り</td>
+      <td><span style="color:black;">48%</span> / <span style="color:green;">25%</span> / <span style="color:blue;">17%</span> / <span style="color:purple;">9%</span> / <span style="color:gold;">1%</span> / <span style="color:red;">0%</span></td>
+      <td>0.8</td>
+      <td>+0.3 ～ +1.05</td>
+      <td>×1.1 ～ ×1.3</td>
+    </tr>
+    <tr>
+      <td>ひさかたのお守り</td>
+      <td><span style="color:black;">25%</span> / <span style="color:green;">30%</span> / <span style="color:blue;">25%</span> / <span style="color:purple;">15%</span> / <span style="color:gold;">4.99%</span> / <span style="color:red;">0.1%</span></td>
+      <td>0.9</td>
+      <td>+0.4 ～ +1.1</td>
+      <td>×1.15 ～ ×1.3</td>
+    </tr>
+    <tr>
+      <td>ちはやぶるお守り</td>
+      <td><span style="color:black;">10%</span> / <span style="color:green;">20%</span> / <span style="color:blue;">30%</span> / <span style="color:purple;">25%</span> / <span style="color:gold;">12%</span> / <span style="color:red;">3%</span></td>
+      <td>1.0</td>
+      <td>+0.5 ～ +1.2</td>
+      <td>×1.2 ～ ×1.35</td>
+    </tr>
+  </tbody>
+</table>
+<h2>護石スキル計算シミュレーター（抽選＋途中式表示）</h2>
+
+<label for="talisman">護石を選択:</label>
+<select id="talisman">
+  <option value="cc:ken_goseki_1">しろたえのお守り</option>
+  <option value="cc:ken_goseki_2">たまのおのお守り</option>
+  <option value="cc:ken_goseki_3">あかねさすお守り</option>
+  <option value="cc:ken_goseki_4">あしひきのお守り</option>
+  <option value="cc:ken_goseki_5">ひさかたのお守り</option>
+  <option value="cc:ken_goseki_6">ちはやぶるお守り</option>
+</select>
+
+<button onclick="simulate()">計算する</button>
+
+<div id="result"></div>
+
+<script>
+// 護石の初期値
+const initialValues = {
+  "cc:ken_goseki_1": 0.5,
+  "cc:ken_goseki_2": 0.6,
+  "cc:ken_goseki_3": 0.7,
+  "cc:ken_goseki_4": 0.8,
+  "cc:ken_goseki_5": 0.9,
+  "cc:ken_goseki_6": 1.0
+};
+
+// 護石ごとのスキル範囲
+const skillValueRanges = {
+  "cc:ken_goseki_1": { plusMin: 0.05, plusMax: 1.0, mulMin: 1.0, mulMax: 1.2 },
+  "cc:ken_goseki_2": { plusMin: 0.1, plusMax: 1.0, mulMin: 1.05, mulMax: 1.2 },
+  "cc:ken_goseki_3": { plusMin: 0.2, plusMax: 1.0, mulMin: 1.1, mulMax: 1.25 },
+  "cc:ken_goseki_4": { plusMin: 0.3, plusMax: 1.05, mulMin: 1.1, mulMax: 1.3 },
+  "cc:ken_goseki_5": { plusMin: 0.4, plusMax: 1.1, mulMin: 1.15, mulMax: 1.3 },
+  "cc:ken_goseki_6": { plusMin: 0.5, plusMax: 1.2, mulMin: 1.2, mulMax: 1.35 }
+};
+
+// 護石ごとのレア度確率（コモン→ミシック）
+const rarityChancesByItem = {
+  "cc:ken_goseki_1": [0.85, 0.10, 0.05, 0.00, 0.00, 0.00],
+  "cc:ken_goseki_2": [0.70, 0.15, 0.10, 0.05, 0.00, 0.00],
+  "cc:ken_goseki_3": [0.63, 0.18, 0.13, 0.055, 0.005, 0.00],
+  "cc:ken_goseki_4": [0.48, 0.25, 0.17, 0.09, 0.01, 0.00],
+  "cc:ken_goseki_5": [0.25, 0.30, 0.25, 0.15, 0.0499, 0.001],
+  "cc:ken_goseki_6": [0.10, 0.20, 0.30, 0.25, 0.12, 0.03]
+};
+
+// レア度の抽選回数
+const drawCountByRarity = [1,2,3,4,5,6];
+const rarityNames = ["コモン","アンコモン","レア","エピック","レジェンダリー","ミシック"];
+
+// ランダムに加算か乗算を返す
+function randomPlusOrMul(range) {
+  const isPlus = Math.random() < 0.5;
+  if (isPlus) {
+    const plus = Math.random() * (range.plusMax - range.plusMin) + range.plusMin;
+    return { type: '+', value: parseFloat(plus.toFixed(2)), min: range.plusMin, max: range.plusMax };
+  } else {
+    const mul = Math.random() * (range.mulMax - range.mulMin) + range.mulMin;
+    return { type: '×', value: parseFloat(mul.toFixed(2)), min: range.mulMin, max: range.mulMax };
+  }
+}
+
+// レア度を抽選
+function drawRarity(item) {
+  const chances = rarityChancesByItem[item];
+  const r = Math.random();
+  let sum = 0;
+  for(let i=0;i<chances.length;i++){
+    sum += chances[i];
+    if(r < sum) return i;
+  }
+  return chances.length-1;
+}
+
+function simulate() {
+  const talisman = document.getElementById("talisman").value;
+  const rarityIndex = drawRarity(talisman);
+  const rarityName = rarityNames[rarityIndex];
+  const drawCount = drawCountByRarity[rarityIndex];
+
+  let value = initialValues[talisman];
+  const steps = [];
+  const range = skillValueRanges[talisman];
+
+  for (let i = 0; i < drawCount; i++) {
+    const step = randomPlusOrMul(range);
+    if(step.type === '+') value += step.value;
+    else value *= step.value;
+    steps.push(step);
+  }
+
+  // テーブル作成
+  let tableHtml = '<table><tr><th>回数</th><th>操作</th><th>値</th><th>範囲</th></tr>';
+  let currentValue = initialValues[talisman];
+  steps.forEach((s,i)=>{
+    let rangeText = s.type === '+' ? `+${s.min}〜+${s.max}` : `×${s.min}〜×${s.max}`;
+    tableHtml += `<tr>
+      <td>${i+1}</td>
+      <td>${s.type}</td>
+      <td>${s.value}</td>
+      <td>${rangeText}</td>
+    </tr>`;
+    currentValue = s.type === '+' ? currentValue + s.value : currentValue * s.value;
+  });
+  tableHtml += '</table>';
+
+  document.getElementById("result").innerHTML = `
+    <p>初期値: ${initialValues[talisman]}</p>
+    <p>抽選されたレア度: ${rarityName}（抽選回数: ${drawCount}）</p>
+    ${tableHtml}
+    <p>最終スキル値: ${value.toFixed(3)}</p>
+  `;
+}
+</script>
 
 
 </div>
+
+
 
 
 </div>
 
 <footer>
-  更新日:2025/08/14 4:52<br>
+  更新日:2025/08/15 5:15<br>
   @よっわ<br>
 </footer>
 
