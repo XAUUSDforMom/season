@@ -92,6 +92,7 @@
       <option value="boss">ボス</option>
       <option value="player">追加アイテム</option>
       <option value="system">追加システム</option>
+      <option value="note">パッチノート</option>
     </select>
   </div>
 <div id="mob" class="section active">
@@ -114,7 +115,7 @@
 
   <p>スケルトン</p>
   <ul>
-    <li>♡20 →♡25</li>
+    <li>♡20 →♡28</li>
     <li>15m以内: 矢[3点バースト]</li>
     <li>15~50m: 矢[無重力、弾速強化]</li>
     <li>スケルトン同士は敵対しない</li>
@@ -247,10 +248,16 @@
     <li>⚔5 → ⚔10</li>
   </ul>
 
-  <p>ピグリンburuji</p>
+  <p>ピグリンブルートi</p>
   <ul>
     <li>♡50 →♡190</li>
     <li>⚔7 → ⚔15</li>
+  </ul>
+
+  <p>ホグリン</p>
+  <ul>
+    <li>♡40 →♡80</li>
+    <li>⚔3~9 → ⚔6~18</li>
   </ul>
 
   
@@ -263,7 +270,7 @@
     <li>⚔4 → ⚔6</li>
   </ul>
 
-  <p>ホグリン[♡20 →♡30]</p>
+  
 
   <p>シュルカー[♡30 →♡40]</p>
   <ul>
@@ -288,6 +295,7 @@
   <ul>
     <li>♡24 →♡75</li>
     <li> ⚔8 → ⚔14</li>
+    <li>最寄りの敵をターゲティングします。</li>
   </ul>
 
   <p>エヴォーカー</p>
@@ -377,20 +385,28 @@
     <ul>
       <li>橋脇護鉄インゴットと作業台でクラフトできる</li>
       <li>護石をもって右クリックするとガチャができる</li>
-      <li><u>ガチャをする際は15lvと橋脇護鉄インゴットが必要</u></li>
+      <li><u>ガチャをする際は10lvと橋脇護鉄インゴットが必要</u></li>
     </ul>
     
     <p>橋脇護ドーム</p>
     <ul>
-      <li>レシピ未定</li>
+      <li>橋脇護鉄インゴット×1,ダイヤモンド×1,アメジスト×1　→護ドーム×3</li>
       <li>15sで消滅</li>
-      <li><u>あらゆる飛翔体は境界を通り抜けられない</u></li>
+      <li><u>矢、火の玉を防ぎます。</u></li>
     </ul>
 
     <p>金リンゴ </p>
+    <ul>
     <li>再生 II（10秒）</li>
     <li>吸収 I（120秒）</li>
     <li><u>耐性 I（60秒）</u></li>
+    </ul>
+
+    <p>TNT</p>
+    <ul>
+    <li>爆発:4 →50</li>
+    </ul>
+    
     
   </div>
 
@@ -437,11 +453,11 @@
   <tbody>
     <tr><td>1.00 ～ 1.99</td><td>＋1⚔</td></tr>
     <tr><td>2.00 ～ 2.99</td><td>＋2⚔</td></tr>
-    <tr><td>3.00 ～ 3.99</td><td>＋2~3⚔</td></tr>
-    <tr><td>4.00 ～ 4.99</td><td>＋3⚔</td></tr>
-    <tr><td>5.00 ～ 5.99</td><td>＋4~5⚔</td></tr>
-    <tr><td>6.00 ～ 6.99</td><td>＋5⚔</td></tr>
-    <tr><td>7.00 以上</td><td>＋5~6⚔ </td></tr>
+    <tr><td>3.00 ～ 3.99</td><td>＋3⚔</td></tr>
+    <tr><td>4.00 ～ 4.99</td><td>＋4⚔</td></tr>
+    <tr><td>5.00 ～ 5.99</td><td>＋5⚔</td></tr>
+    <tr><td>6.00 ～ 6.99</td><td>＋6⚔</td></tr>
+    <tr><td>7.00 以上</td><td>＋7⚔ </td></tr>
   </tbody>
 </table>
 
@@ -570,6 +586,7 @@
 
 <div id="result"></div>
 
+
 <script>
 // 護石の初期値
 const initialValues = {
@@ -674,12 +691,50 @@ function simulate() {
 </div>
 
 
+<div id="note" class="section">
+  <h2>パッチノート</h2>
+  <label for="version">バージョンを選択:</label>
+  <select id="version">
+    <option value="">--選択してください--</option>
+    <option value="1.0">v1.0</option>
+    <option value="1.1">v1.1</option>
+    <option value="2.0">v2.0</option>
+  </select>
+
+  <div id="patch-content" style="margin-top:15px;"></div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const patchNotes = {
+    "1.0": `
+      <h3>v1.0</h3>
+      <p>初期リリース(2025/8/21)</p>
+    `,
+    "1.1": `
+    `,
+    "2.0": `
+      
+    `
+  };
+
+  const select = document.getElementById("version");
+  const content = document.getElementById("patch-content");
+
+  select.addEventListener("change", () => {
+    const version = select.value;
+    content.innerHTML = patchNotes[version] || "<p>このバージョンの情報はありません。</p>";
+  });
+});
+</script>
+
+  </div>
 
 
 </div>
 
 <footer>
-  更新日:2025/08/21 13:03<br>
+  更新日:2025/08/21 19:00<br>
   @よっわ<br>
 </footer>
 
