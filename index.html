@@ -1,801 +1,827 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>新シーズン</title>
-  <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background-color: #f0f0f0;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minecraft Datapack</title>
 
-    header {
-      background-color: #4CAF50;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+<style>
+body {
+    margin: 0;
+    font-family: "Segoe UI","Hiragino Kaku Gothic ProN",sans-serif;
+    background: linear-gradient(180deg, #ffe9f3, #e6f3ff);
+    color: #444;
+}
 
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
+/* ===== 共通 ===== */
+header {
+    padding: 20px 16px;
+    text-align: center;
+}
 
-    img {
-      max-width: 100%;
-      border-radius: 10px;
-    }
+header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+}
 
-    h2 {
-      color: #333;
-      margin-top: 30px;
-    }
+header p {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
 
-    .dropdown {
-      margin-bottom: 20px;
-    }
+section {
+    display: none;
+    padding: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+}
 
-    label {
-      font-weight: bold;
-      margin-right: 10px;
-    }
+section.active {
+    display: block;
+}
 
-    select {
-      padding: 8px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
+.back {
+    text-align: center;
+    margin: 20px 0;
+}
 
-    .section {
-      display: none;
-    }
+.back button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-size: 1rem;
+}
 
-    .section.active {
-      display: block;
-    }
+/* ===== メニュー ===== */
+.menu {
+    display: grid;
+    gap: 14px;
+    padding: 20px;
+    max-width: 420px;
+    margin: 0 auto;
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      color: #777;
-    }
-    table {
-      
-      border-collapse: collapse; width: 80%; margin-top: 10px; 
-    }
-    th, td { border: 1px solid black; padding: 5px; text-align: center; }
-  </style>
+.menu button {
+    padding: 18px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* ===== 敵モブ ===== */
+.mob-card {
+    background: white;
+    border-radius: 18px;
+    padding: 14px;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.mob-card h2 {
+    margin: 0 0 6px;
+    font-size: 1.1rem;
+}
+
+.mob-card p {
+    margin: 4px 0;
+    font-size: 0.9rem;
+}
+
+/* ===== 表 ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+th, td {
+    padding: 10px;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+th {
+    background: #dceeff;
+}
+
+tr:nth-child(even) {
+    background: #f7fbff;
+}
+</style>
 </head>
+
 <body>
 
-<header>
-  <h1>新シーズン</h1>
-</header>
+<!-- ===== トップ ===== -->
+<section id="home" class="active">
+    <header>
+        <h1>新シーズン2026/02/04~</h1>
+        <p>下のボタンをクリックして情報を見る。</p>
+    </header>
 
-<div class="container">
+    <div class="menu">
+        <button onclick="show('enemy')">敵モブ</button>
+        <button onclick="show('goseki')">護石</button>
+        <button onclick="show('chance')">確率</button>
+        <button onclick="show('items')">追加アイテム</button>
+        <button onclick="show('patch')">パッチノート</button>
+    </div>
+</section>
 
-  <div class="dropdown">
-    <label for="category">🔽 紹介項目:</label>
-    <select id="category">
-      <option value="mob">モブ</option>
-      <option value="boss">ボス</option>
-      <option value="player">追加アイテム</option>
-      <option value="system">追加システム</option>
-      <option value="note">パッチノート</option>
-    </select>
-  </div>
-<div id="mob" class="section active">
-  <h2>モブ</h2>
+<!-- ===== 敵モブ ===== -->
+<section id="enemy">
+    <header><h1>敵モブ</h1></header>
 
-  <p>ゾンビ</p>
-  <ul>
-    <li>♡20 →♡40</li>
-    <li>⚔3 → ⚔6</li>
-    <li>スケルトンに敵対しない</li>
-  </ul>
+    <div class="mob-card">
+        <h2>ゾンビ</h2>
+        <p>HP：20→45</p>
+        <p>特徴：攻撃力が高く、一定確率で強化状態になる</p>
+    </div>
 
-  
-  <p>ドラウンド</p>
-  <ul>
-    <li>♡20 →♡40</li>
-    <li>⚔3 → ⚔5</li>
-    <li>射程:10→25</li>
-  </ul>
+    <div class="mob-card">
+        <h2>クリーパー</h2>
+        <p>HP：20→25</p>
+        <p>特徴：爆発力上昇
+    </div>
 
-  <p>スケルトン</p>
-  <ul>
-    <li>♡20 →♡28</li>
-    <li>15m以内: 矢[3点バースト]</li>
-    <li>15~50m: 矢[無重力、弾速強化]</li>
-    <li>スケルトン同士は敵対しない</li>
-  </ul>
+    <div class="mob-card">
+        <h2>クモ</h2>
+        <p>HP：20→32</p>
+        <p>攻撃力:4
+        <p>特徴：攻撃を当てるとプレイヤーの足元に蜘蛛の巣設置</p>
+    </div>
 
-  <p>クリーパー</p>
-  <ul>
-    <li>♡20→♡20</li>
-    <li>爆発:3→6</li>
-
-  </ul>
-
-  <p>帯電クリーパー</p>
-  <ul>
-    <li>♡20→♡20</li>
-    <li>爆発:6→36</li>
-    <li>爆発までの時間:1.5s→2.5s</li>
-    <li>爆発時に火を伴う</li>
-  </ul>
-
-  <p>スライム</p>
-  <ul>
-    <li>ラージ</li>
-    <ul>
-    <li>♡16 →♡32</li>
-    <li>⚔4 → ⚔5</li>
-    </ul>
-    <li>ミディアム</li>
-    <ul>
-    <li>♡4 →♡8</li>
-    <li>⚔2 → ⚔3</li>
-    </ul>
-    <li>スモール</li>
-    <ul>
-    <li>♡1 →♡2</li>
-    <li>⚔0 → ⚔1</li>
-    </ul>
-  </ul>
-  
-  <p>ウィッチ</p>
-  <ul>
-    <li>♡26→♡45</li>
-    <li>射程:10→15</li>
-  </ul>
-
-  <p>クモ</p>
-    <ul>
-    <li>♡16 →♡40</li>
-    <li>⚔2 → ⚔6</li>
-  </ul>
-
-
-
-  <p>洞窟グモ</p>
-    <ul>
-    <li>♡16 →♡40</li>
-    <li>⚔2 → ⚔6</li>
-    <li>毒:15s → 25s</li>
-  </ul>
-
-  <p>エンダーマン</p>
-  <ul>
-    <li>♡40→♡100</li>
-    <li>⚔7→⚔14</li>
-  </ul>
-
-  <p>ストレイ</p>
-    <ul>
-    <li>♡20 →♡30</li>
-    <li>無重力、弾速強化</li>
-  </ul>
-
-  <p>ゾンビピッグマン</p>
-  <ul>
-    <li>♡20 →♡20</li>
-    <li>⚔7 → ⚔12</li>
-  </ul>
-
-  <p>ウィザースケルトン</p>
-  <ul>
-    <li>♡20 →♡35</li>
-    <li>⚔4 → ⚔8</li>
-    <li>ウィザー効果:10s → 15s</li>
-    <li>攻撃を受けるとウィザーウイルスに潜伏</li>
-    <li>時間経過orさらに被ダメで感染促進</li>
-    <li>潜伏中、モブを殴ることで克服</li>
-    <li>感染=>最大体力-5♡</li>
-    <li>克服=>攻撃力アップ</li>
-  </ul>
-  
-  <p>ブレイズ</p>
-  <ul>
-    <li>♡20 → ♡35</li>
-    <li>6連射</li>
-    <li>弾速UP</li>
-    <li>発射間隔短縮</li>
-    <li>延焼[ヒット時半径6マスのプレイヤーに火属性ダメージ]</li>
-  </ul>
-
-  <p>ガスト</p>
-  <ul>
-    <li>♡10 →♡25</li>
-    <li>3連射</li>
-    <li>射程延長</li>
-  </ul>
-
-  <p>マグマキューブ</p>
-  <ul>
-    <li>ラージ</li>
-    <ul>
-    <li>♡16 →♡32</li>
-    <li>⚔6 → ⚔8</li>
-    </ul>
-    <li>ミディアム</li>
-    <ul>
-    <li>♡4 →♡8</li>
-    <li>⚔4 → ⚔5</li>
-    </ul>
-    <li>スモール</li>
-    <ul>
-    <li>♡1 →♡2</li>
-    <li>⚔3 → ⚔4</li>
-    </ul>
-  </ul>
-
-  <p>ピグリン</p>
-  <ul>
-    <li>♡16 →♡40</li>
-    <li>⚔5 → ⚔10</li>
-  </ul>
-
-  <p>ピグリンブルートi</p>
-  <ul>
-    <li>♡50 →♡190</li>
-    <li>⚔7 → ⚔15</li>
-  </ul>
-
-  <p>ホグリン</p>
-  <ul>
-    <li>♡40 →♡80</li>
-    <li>⚔3~9 → ⚔6~18</li>
-  </ul>
-
-  
-
-
-
-  <p>ハスク</p>
-  <ul>
-    <li>♡20 →♡40</li>
-    <li>⚔4 → ⚔6</li>
-  </ul>
-
-  
-
-  <p>シュルカー[♡30 →♡40]</p>
-  <ul>
-    <li></li>
-    <li></li>
-  </ul>
-
-  <p>ファントム</p>
-  <ul>
-    <li>♡20 →♡35</li>
-    <li>⚔6 → ⚔10</li>
-    <li>盲目 5s</li>
-  </ul>
-  
-  <p>襲撃者</p>
-  <ul>
-    <li>♡24 →♡40</li>
-    <li>矢10連射</li>
-  </ul>
-
-  <p>ヴィンディケーター</p>
-  <ul>
-    <li>♡24 →♡110</li>
-    <li> ⚔8 → ⚔14</li>
-    <li>最寄りの敵をターゲティングします。</li>
-  </ul>
-
-  <p>エヴォーカー</p>
-  <ul>
-    <li>♡24 →♡75</li>
-    <li> 略奪者とヴィンディケータを全回復、加速する魔法</li>
-    <li> 足元に3秒後に6♡固定ダメージ爆破魔法</li>
-  </ul>
-
-  <p>ラベジャー</p>
-  <ul>
-    <li>♡100 →♡300</li>
-    <li> ⚔12 → ⚔20</li>
-  </ul>
-
-  <p>ヴェックス</p>
-  <ul>
-    <li>♡14→♡20</li>
-    <li>⚔3 → ⚔5</li>
-  </ul>
-
-  <p>シルバーフィッシュ</p>
-  <ul>
-    <li></li>
-    <li></li>
-  </ul>
-
-  <p>ガーディアン</p>
-  <ul>
-    <li></li>
-    <li></li>
-  </ul>
-</div>
-
-<div id="boss" class="section">
-  <h2>ボス</h2>
-  <p>エンダードラゴン</p>
-  <ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-  <p>ウィザー</p>
-  <ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-  <p>エルダーガーディアン</p>
-  <ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-  <p>ウォーデン</p>
-  <ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-</div>
-
-
-  <div id="player" class="section">
-    <h2>追加アイテム</h2>
-    <p>橋脇護鉄鉱石</p>
-    <ul>
-      <li>y:-35 ~ -50にて生成</li>
-      <li>手で破壊可能</li>
-    </ul>
+    <div class="mob-card">
+        <h2>洞窟グモ</h2>
+        <p>HP：20</p>
+        <p>攻撃力:4
+        <p>特徴：攻撃を当てるとプレイヤーの足元に蜘蛛の巣設置</p> 
+    </div>
     
-    <p>橋脇護鉄インゴット</p>
-    <ul>
-      <li>橋脇護鉄鉱石を破壊して入手可能</li>
-      <li>護石ガチャに使う</li>
-      <li>1ダメージ</li>
-    </ul>
+    <div class="mob-card">
+        <h2>ボグド</h2>
+        <p>HP：16→30</p>
+        <p>攻撃力:4
+        <p>特徴：近距離と遠距離で矢の運用方法が変わる</p> 
+    </div>
     
-    <p>護鉄作業台</p>
-    <ul>
-      <li>橋脇護鉄インゴットと作業台でクラフトできる</li>
-      <li>護石をもって右クリックするとガチャができる</li>
-      <li><u>ガチャをする際は10lvと橋脇護鉄インゴットが必要</u></li>
-    </ul>
-    
-    <p>橋脇護ドーム</p>
-    <ul>
-      <li>橋脇護鉄インゴット×1,ダイヤモンド×1,アメジスト×1　→護ドーム×4</li>
-      <li>15sで消滅</li>
-      <li><u>矢、火の玉を防ぎます。</u></li>
-    </ul>
+    <div class="mob-card">
+        <h2>スケルトン</h2>
+        <p>HP：18→35</p>
+        <p>攻撃力:4
+        <p>特徴：近距離と遠距離で矢の運用方法が変わる</p> 
+    </div>
 
-    <p>金リンゴ </p>
-    <ul>
-    <li>再生 II（10秒）</li>
-    <li>吸収 I（120秒）</li>
-    <li><u>耐性 I（60秒）</u></li>
-    </ul>
+    <div class="mob-card">
+        <h2>ゾンビ村人</h2>
+        <p>HP：20→40</p>
+        <p>攻撃力:3→6
+        <p>特徴：なし</p> 
+    </div>
 
-    <p>TNT</p>
-    <ul>
-    <li>爆発:4 → 600</li>
-    </ul>
-    
-    
-  </div>
+    <div class="mob-card">
+        <h2>ゾンビピッグマン</h2>
+        <p>HP：20→20</p>
+        <p>攻撃力:7→12
+        <p>特徴：なし</p> 
+    </div>
 
-<div id="system" class="section">
-  <h2>護石システム</h2>
-  <p>護鉄作業台で新鉱石「橋脇護鉄」と経験値をつかうことでお守りにスキルポイントを付与できる</p>
-  
-  <h2>作りかた</h2>
-  <ul>
-    <li>クラフトで護石を作る</li>
-    <li>護石を手に持ち護鉄作業台を右クリック</li>
-    <li>新鉱石「橋脇護鉄」とレベルを使用し錬金する</li>
-    <li>インベントリの左上のマスに置くと効能を発揮する</li>
-  </ul>
-  
-  <h2>スキル</h2>
-<h3>体力増強</h3>
-<table border="1" cellpadding="5" cellspacing="0">
-  <thead>
+    <div class="mob-card">
+        <h2>ゾンビオウムガイ</h2>
+        <p>HP：30</p>
+        <p>攻撃力:なし
+        <p>特徴：ドラウンドを乗せている</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>オオカミ</h2>
+        <p>HP：40→60</p>
+        <p>攻撃力:4→7
+        <p>特徴：プレイヤーを攻撃する</p> 
+    </div>
+    
+    <div class="mob-card">
+        <h2>ウィザースケルトン</h2>
+        <p>HP：20→40</p>
+        <p>攻撃力:4→８
+        <p>特徴：衰弱状態の延長</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>ウィッチ</h2>
+        <p>HP：26→40</p>
+        <p>攻撃力:4
+        <p>特徴：ポーション投擲間隔の短縮</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>ヴィンディケーター</h2>
+        <p>HP：24→220</p>
+        <p>攻撃力:8→15
+        <p>特徴：矢が無効・黒閃を出す・コネ</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>ヴェックス</h2>
+        <p>HP：14→20</p>
+        <p>攻撃力:3→5
+        <p>特徴：なし</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>ストレイ</h2>
+        <p>HP：20→35</p>
+        <p>攻撃力:4
+        <p>特徴：近距離と遠距離で矢の運用方法が変わる</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>シルバーフィッシュ</h2>
+        <p>HP：8→10</p>
+        <p>攻撃力:1→2
+        <p>特徴：移動速度1.2倍</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>シェルカー</h2>
+        <p>HP：30→50</p>
+        <p>攻撃力:4
+        <p>特徴：攻撃を受けると即死</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>ピグリン</h2>
+        <p>HP：16→50</p>
+        <p>攻撃力:6→15
+        <p>特徴：なし</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>ピグリンブルート</h2>
+        <p>HP：50→200</p>
+        <p>攻撃力:7→15
+        <p>特徴：なし</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>ファントム</h2>
+        <p>HP：20→30</p>
+        <p>攻撃力:6→10
+        <p>特徴：攻撃を受けると即死</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>パーチド</h2>
+        <p>HP：16→30</p>
+        <p>攻撃力:4
+        <p>特徴：近距離と遠距離で矢の運用方法が変わる/p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>マグマキューブ[大]</h2>
+        <p>HP：16→32</p>
+        <p>攻撃力:6→8
+        <p>特徴：なし</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>マグマキューブ[中]</h2>
+        <p>HP：4→8</p>
+        <p>攻撃力:4→5
+        <p>特徴：なし</p> 
+    </div>
+    
+    <div class="mob-card">
+        <h2>マグマキューブ[小]</h2>
+        <p>HP：1→2</p>
+        <p>攻撃力:3→4
+        <p>特徴：なし</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>ハスク</h2>
+        <p>HP：20→40</p>
+        <p>攻撃力:3→6
+        <p>特徴：攻撃をうけるとお腹が減る</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>ホグリン</h2>
+        <p>HP：40→80</p>
+        <p>攻撃力:3→6
+        <p>特徴：ブサイク/p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>ハッピーガスト</h2>
+        <p>HP：20→40</p>
+        <p>攻撃力:なし
+        <p>特徴：なし</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>ガーディアン/h2>
+        <p>HP：30→60</p>
+        <p>攻撃力:5→10
+        <p>特徴：なし</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>ガスト</h2>
+        <p>HP：10→20</p>
+        <p>攻撃力:
+        <p>特徴：三連射</p> 
+    </div>
+
+	<div class="mob-card">
+        <h2>ピリジャー</h2>
+        <p>HP：20→40</p>
+        <p>特徴：20連射</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>エヴォーカー</h2>
+        <p>HP：24→120</p>
+        <p>攻撃力:
+        <p>特徴：円状に広範囲牙攻撃・ヴィンディケーター回復・強化魔法</p> 
+    </div>
+
+    <div class="mob-card">
+        <h2>エンダーマン</h2>
+        <p>HP：40→120</p>
+        <p>攻撃力:7→15
+        <p>特徴：テレポート間隔が短くなる</p> 
+    </div>
+             
+    <div class="mob-card">
+        <h2>溺死ゾンビ</h2>
+        <p>HP：40</p>
+        <p>攻撃力:6
+        <p>特徴：なし</p>    
+    <div class="back"><button onclick="show('home')">⬅ 戻る</button></div>
+</section>
+
+<!-- ===== 護石 ===== -->
+<section id="goseki">
+    <header><h1>護石</h1></header>
+
+    <table>
+        <tr>
+            <th>護石名</th>
+            <th>効果</th>
+        <tr>
+            <td>ゾンビⅠ</td>
+            <td>６ハート以上で攻撃力＋１　追加ハート＋２　再生＋１</td>
+        </tr>
+        <tr>
+            <td>ゾンビⅡ</td>
+            <td>６ハート以上で攻撃力＋２　追加ハート＋３　再生＋１</td>
+        </tr> 
+        <tr>
+            <td>ゾンビⅢ</td>
+            <td>６ハート以上で攻撃力＋３　追加ハート＋４　再生＋１</td>
+        </tr>
+        <tr>
+            <td>斧おっさんⅠ</td>
+            <td>弓使用不可　攻撃力＋３　再生能力２</td>
+        </tr>
+        <tr>
+            <td>斧おっさんⅡ</td>
+            <td>弓使用不可　攻撃力＋４　再生能力２</td>
+        </tr>
+        <tr>
+            <td>斧おっさんⅢ</td>
+            <td>弓使用不可　攻撃力＋５＋再生能力３</td>
+        </tr>
+        <tr>
+            <td>ポイズンⅠ</td>
+            <td>ヒット時に毒属性を付与する</td>
+        </tr>
+        <tr>
+            <td>ポイズンⅡ</td>
+            <td>毒やられのモブをキルした際半径５マスの的に毒属性を拡散する</td>
+        </tr>
+        <tr>
+            <td>ポイズンⅢ</td>
+            <td>主感染させた毒やられ中のモブをキルすると体力を２回復する</td>
+        </tr>
+        <tr>
+            <td>スナイパーズⅠ</td>
+            <td>半重力</td>
+        </tr>
+        <tr>
+            <td>スナイパーズⅡ</td>
+            <td>無重力</td>
+        </tr>
+        <tr>
+            <td>スナイパーズⅢ</td>
+            <td>無重力＋弾速強化</td>
+        </tr>
+        <tr>
+            <td>ウィーパーⅠ</td>
+            <td>近接攻撃と遠距離攻撃ヒット時半径5マスのエンティティに２ダメージ</td>
+        </tr>
+         <tr>
+            <td>ウィーパーⅡ</td>
+            <td>近接攻撃と遠距離攻撃ヒット時半径5マスのエンティティに３ダメージ</td>
+        </tr>
+         <tr>
+            <td>ウィーパーⅢ</td>
+            <td>近接攻撃と遠距離攻撃ヒット時半径１０マスのエンティティに４ダメージ</td>
+        </tr>
+         <tr>
+            <td>ネザーⅠ</td>
+            <td>防火</td>
+        </tr>
+         <tr>
+            <td>ネザーⅡ</td>
+            <td>マグマから出た１５秒間攻撃力上昇２
+            </td>
+        </tr>
+         <tr>
+            <td>ネザーⅢ</td>
+            <td>攻撃を受けた際1秒間攻撃力上昇５</td>
+        </tr>
+         <tr>
+            <td>エヴォーカーⅠ</td>
+            <td>ハート2個以下で2体味方ゾンビ　攻撃受けたらSPEEDup[2秒] 半径５マス再生１付与</td>
+        </tr>
+         <tr>
+            <td>エヴォーカーⅡ</td>
+            <td>ハート2個以下で3体味方ゾンビ　攻撃受けたらSPEEDup[4秒] 半径５マス再生１付与</td>
+        </tr>
+         <tr>
+            <td>エヴォーカーⅢ</td>
+            <td>ハート2個以下で3体味方おっさん　攻撃受けたらSPEEDup[4秒] 半径10マス再生１付与</td>
+        </tr>
+         <tr>
+            <td>エンダーマンⅠ</td>
+            <td>半径3マスの矢を75%の確率で消す</td>
+        </tr>
+         <tr>
+            <td>エンダーマンⅡ</td>
+            <td>半径3マスの矢を100%の確率で消す</td>
+        </tr>
+         <tr>
+            <td>エンダーマンⅢ</td>
+            <td>半径5マスの矢を100%の確率で消す</td>
+        </tr>
+         <tr>
+            <td>ウィザスケⅠ</td>
+            <td>石の剣使用時攻撃力＋６　攻撃した相手に衰弱付与２０秒</td>
+        </tr>
+         <tr>
+            <td>ウィザスケⅡ</td>
+            <td>石の剣使用時攻撃力＋７　攻撃した相手に衰弱付与３０秒</td>
+        </tr>
+         <tr>
+            <td>ウィザスケⅢ</td>
+            <td>石の剣使用時攻撃力＋８　攻撃した相手に衰弱２付与１５秒</td>
+        </tr>
+         <tr>
+            <td>ガストⅠ</td>
+            <td>矢が命中した時に小規模な爆発が発生する(地形破壊なし)</td>
+        </tr>
+         <tr>
+            <td>ガストⅡ</td>
+            <td>矢が命中した時に中規模な爆発が発生する(地形破壊なし)</td>
+        </tr>
+         <tr>
+            <td>ガストⅢ</td>
+            <td>矢が命中した時に大規模な爆発が発生する(地形破壊なし)</td>
+        </tr>
+         <tr>
+            <td>ウォーデンⅠ</td>
+            <td>ウィザー特攻[与ダメージ1.5倍]  ゲージがたまれば攻撃した相手にビーム　追加ハート＋４</td>
+        </tr>
+         <tr>
+            <td>ウォーデンⅡ</td>
+            <td>未定</td>
+        </tr>
+         <tr>
+            <td>ウォーデンⅢ</td>
+            <td>未定</td>
+        </tr>
+         <tr>
+            <td>オーシャンⅠ</td>
+            <td>水に触れるとSPEEDup　攻撃力+２</td>
+        </tr>
+         <tr>
+            <td>オーシャンⅡ</td>
+            <td>水に触れるとSPEEDup　攻撃力+３</td>
+        </tr>
+         <tr>
+            <td>オーシャンⅢ</td>
+            <td>水に触れるとSPEEDup［Ｌｖ.２］　攻撃力+４　再生１</td>
+        </tr>
+         <tr>
+            <td>エンドラⅠ</td>
+            <td>未定</td>
+        </tr>
+        <tr>
+            <td>エンドラⅡ</td>
+            <td>未定</td>
+        </tr>
+        <tr>
+            <td>エンドラⅢ</td>
+            <td>未定</td>
+        </tr>
+        <tr>
+            <td>マイナーズⅠ</td>
+            <td>採掘速度上昇１</td>
+        </tr>
+        <tr>
+            <td>マイナーズⅡ</td２>
+            <td>採掘速度上昇２</td>
+        </tr>
+        <tr>
+            <td>マイナーズⅢ</td>
+            <td>採掘速度上昇３</td>
+        </tr>
+        
+
+    </table>
+
+    <div class="back"><button onclick="show('home')">⬅ 戻る</button></div>
+</section>
+
+<!-- ===== 確率 ===== -->
+<section id="chance">
+    <header><h1>確率</h1></header>
+    <h2>護石成功確率</h2>
+    <table>
+        <tr>
+            <th>護石</th>
+            <th>成功確率(理論値)</th>
+            <th>大成功確率(理論値)</th>
+            <th>超成功確率(理論値)</th>
+        </tr>
+        <tr>
+            <td>コモンの護石</td>
+            <td>60%</td>
+            <td>20%</td>
+            <td>20%</td>
+        </tr>
+        <tr>
+            <td>アンコモンの護石</td>
+            <td>50%</td>
+            <td>30%</td>
+            <td>20%</td>
+        </tr>
+        <tr>
+            <td>レアの護石</td>
+            <td>40%</td>
+            <td>30%</td>
+            <td>30%</td>
+        </tr>
+        <tr>
+            <td>エピックの護石</td>
+            <td>40%</td>
+            <td>30%</td>
+            <td>30%</td>
+        </tr>
+        <tr>
+            <td>レジェンダリーの護石</td>
+            <td>30%</td>
+            <td>35%</td>
+            <td>35%</td>
+        </tr>
+    </table>
+    <h2>護石計算システム</h2>
+    <table>
+        <tr>
+            <th>護石</th>
+            <th>初期値</th>
+            <th>抽選最大値)</th>
+            <th>倍率</th>
+        </tr>
+        <tr>
+            <td>コモンの護石</td>
+            <td>0.32</td>
+            <td>0.31</td>
+            <td>1.15</td>
+        </tr>
+        <tr>
+            <td>アンコモンの護石</td>
+            <td>0.35</td>
+            <td>0.34</td>
+            <td>1.2</td>
+        </tr>
+        <tr>
+            <td>レアの護石</td>
+            <td>0.50</td>
+            <td>0.49</td>
+            <td>1.35</td>
+        </tr>
+        <tr>
+            <td>エピックの護石</td>
+            <td>0.57</td>
+            <td>0.56</td>
+            <td>1.45</td>
+        </tr>
+        <tr>
+            <td>レジェンダリーの護石</td>
+            <td>0.67</td>
+            <td>0.66</td>
+            <td>1.5</td>
+        </tr>
+    </table>
+    <p>成功　→(初期値 + 抽選値) * 倍率ボーナス</p>
+    <p>大成功→(初期値 + 抽選値 + 抽選値) * 倍率ボーナス</p>
+    <p>超成功→(初期値 + 抽選値 + 抽選値 + 抽選値) * 倍率ボーナス</p>
+    <h2>護石各理論値</h2>
+    <table>
     <tr>
-      <th>スキル合計値</th>
-      <th>追加ハート</th>
+        <th>護石</th>
+        <th>成功</th>
+        <th>大成功</th>
+        <th>超成功</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr><td>1.00 ～ 1.99</td><td>＋2♡</td></tr>
-    <tr><td>2.00 ～ 2.99</td><td>＋3♡</td></tr>
-    <tr><td>3.00 ～ 3.99</td><td>＋4♡</td></tr>
-    <tr><td>4.00 ～ 4.99</td><td>＋5♡</td></tr>
-    <tr><td>5.00 ～ 5.99</td><td>＋6♡</td></tr>
-    <tr><td>6.00 ～ 6.99</td><td>＋7♡</td></tr>
-    <tr><td>7.00 以上</td><td>＋8♡</td></tr>
-  </tbody>
+    <tr>
+        <td>コモンの護石</td>
+        <td>0.7245</td>
+        <td>1.081</td>
+        <td>1.4375</td>
+    </tr>
+    <tr>
+        <td>アンコモンの護石</td>
+        <td>0.828</td>
+        <td>1.236</td>
+        <td>1.644</td>
+    </tr>
+    <tr>
+        <td>レアの護石</td>
+        <td>1.3365</td>
+        <td>1.998</td>
+        <td>2.6595</td>
+    </tr>
+    <tr>
+        <td>エピックの護石</td>
+        <td>1.6395</td>
+        <td>2.4515</td>
+        <td>3.2635</td>
+    </tr>
+    <tr>
+        <td>レジェンダリーの護石</td>
+        <td>1.995</td>
+        <td>2.985</td>
+        <td>3.975</td>
+    </tr>
 </table>
 
-<h3>近接基礎ダメージ</h3>
-<table border="1" cellpadding="5" cellspacing="0">
-  <thead>
+<h2>チケットドロップ率</h2>
+    <table>
     <tr>
-      <th>スキル合計値</th>
-      <th>近接基礎ダメージ上昇</th>
+        <th>チケット名</th>
+        <th>確率</th>
+        <th>枚数</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr><td>1.00 ～ 1.99</td><td>＋1⚔</td></tr>
-    <tr><td>2.00 ～ 2.99</td><td>＋2⚔</td></tr>
-    <tr><td>3.00 ～ 3.99</td><td>＋3⚔</td></tr>
-    <tr><td>4.00 ～ 4.99</td><td>＋4⚔</td></tr>
-    <tr><td>5.00 ～ 5.99</td><td>＋5⚔</td></tr>
-    <tr><td>6.00 ～ 6.99</td><td>＋6⚔</td></tr>
-    <tr><td>7.00 以上</td><td>＋7⚔ </td></tr>
-  </tbody>
+    <tr>
+        <td>ゾンビチケット</td>
+        <td>１５％
+        <td>１</td>
+    </tr>
+    <tr>
+        <td>スケルトンチケット(スケルトン、ストレイ、ボグド、パーチド)
+        <td>１０％</td>
+        <td>１</td>
+    </tr>
+    <tr>
+        <td>クモチケット</td>
+        <td>２０％</td>
+        <td>１</td>
+    </tr>
+    <tr>
+        <td>クリチケ</td>
+        <td>１５％</td>
+        <td>１</td>
+    </tr>
+    <tr>
+        <td>ドラウンドチケット</td>
+        <td>１５％</td>
+        <td>１</td>
+    </tr>
+	<tr>
+        <td>エンダーマンチケット</td>
+        <td>１００％</td>
+        <td>１</td>
+    </tr>
+	<tr>
+        <td>ウィッチケット</td>
+        <td>１００％</td>
+        <td>１</td>
+    </tr>
+	<tr>
+        <td>ガーディアンチケット</td>
+        <td>１００％</td>
+        <td>１</td>
+    </tr>
+    <tr>
+        <td>エルダーガーディアンチケット</td>
+        <td>１００％</td>
+        <td>１５～２０</td>
+    </tr>
+    <tr>
+        <td>マグマキューブチケット</td>
+        <td>３０％</td>
+        <td>１</td>
+    </tr>
+    <tr>
+        <td>ガストチケット</td>
+        <td>５０％</td>
+        <td>１</td>
+    </tr>
+     <tr>
+        <td>ブレイズチケット</td>
+        <td>２０％</td>
+        <td>１</td>
+    </tr>
+     <tr>
+        <td>ウィザースケルトンチケット</td>
+        <td>１００％</td>
+        <td>１</td>
+    </tr>
+     <tr>
+        <td>ヴィンディケーターチケット</td>
+        <td>１００％</td>
+        <td>２</td>
+    </tr>
+     <tr>
+        <td>エヴォーカーチケット</td>
+        <td>１００％</td>
+        <td>１～５</td>
+    </tr>
+     <tr>
+        <td>ウォーデンチケット</td>
+        <td>１００％</td>
+        <td>１０</td>
+    </tr>
+     <tr>
+        <td>エンドラチケット</td>
+        <td>１００％</td>
+        <td>未定</td>
+    </tr>
+	
 </table>
 
-<h3>射撃基礎ダメージ</h3>
-<table border="1" cellpadding="5" cellspacing="0">
-  <thead>
-    <tr>
-      <th>スキル合計値</th>
-      <th>射撃基礎ダメージ上昇</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>1.00 ～ 1.99</td><td>＋1🏹</td></tr>
-    <tr><td>2.00 ～ 2.99</td><td>＋1🏹 弾速+10%</td></tr>
-    <tr><td>3.00 ～ 3.99</td><td>＋2🏹 弾速+20% 重力-5%</td></tr>
-    <tr><td>4.00 ～ 4.99</td><td>＋2🏹 弾速+25% 重力-15%</td></tr>
-    <tr><td>5.00 ～ 5.99</td><td>＋3🏹 弾速+30% 重力-25% 橋脇護ドームで矢がはじかれない</td></tr>
-    <tr><td>6.00 ～ 6.99</td><td>＋3🏹 弾速+40% 重力-40%  橋脇護ドームで矢がはじかれない</td></tr>
-    <tr><td>7.00 以上</td><td>＋4🏹 弾速+50% 重力-100%  橋脇護ドームで矢がはじかれない</td></tr>
-  </tbody>
-</table>
 
-<h3>護石レシピ一覧</h3>
-<table border="1" cellpadding="5" cellspacing="0">
-  <thead>
-    <tr>
-      <th>護石名</th>
-      <th>レシピ画像</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>しろたえのお守り</td>
-      <td><img src="images/tairyoku_goseki.png" alt="" width="150"></td>
-    </tr>
-    <tr>
-      <td>たまのおのお守り</td>
-      <td><img src="images/kinsetsu_goseki.png" alt="" width="150"></td>
-    </tr>
-    <tr>
-      <td>あかねさすお守り</td>
-      <td><img src="images/shageki_goseki.png" alt="" width="150"></td>
-    </tr>
-    <tr>
-      <td>あしひきのお守り</td>
-      <td><img src="images/bougyo_goseki.png" alt="" width="150"></td>
-    </tr>
-    <tr>
-      <td>ひさかたのお守り</td>
-      <td><img src="images/saikutsu_goseki.png" alt="" width="150"></td>
-    </tr>
-    <tr>
-      <td>ちはやぶるお守り</td>
-      <td><img src="images/kouun_goseki.png" alt="" width="150"></td>
-    </tr>
-  </tbody>
-</table>
-<table border="1" cellpadding="5" cellspacing="0">
-  <thead>
-    <tr>
-      <th>護石ID</th>
-      <th>レア度確率<br>(コモン / アンコモン / レア / エピック / レジェンダリー / ミシック)</th>
-      <th>初期値</th>
-      <th>加算効果範囲</th>
-      <th>乗算効果範囲</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>しろたえのお守り</td>
-      <td><span style="color:black;">85%</span> / <span style="color:green;">10%</span> / <span style="color:blue;">5%</span> / <span style="color:purple;">0%</span> / <span style="color:gold;">0%</span> / <span style="color:red;">0%</span></td>
-      <td>0.5</td>
-      <td>+0.05 ～ +1.0</td>
-      <td>×1.0 ～ ×1.2</td>
-    </tr>
-    <tr>
-      <td>たまのおのお守り</td>
-      <td><span style="color:black;">70%</span> / <span style="color:green;">15%</span> / <span style="color:blue;">10%</span> / <span style="color:purple;">5%</span> / <span style="color:gold;">0%</span> / <span style="color:red;">0%</span></td>
-      <td>0.6</td>
-      <td>+0.1 ～ +1.0</td>
-      <td>×1.05 ～ ×1.2</td>
-    </tr>
-    <tr>
-      <td>あかねさすお守り</td>
-      <td><span style="color:black;">63%</span> / <span style="color:green;">18%</span> / <span style="color:blue;">13%</span> / <span style="color:purple;">5.5%</span> / <span style="color:gold;">0.5%</span> / <span style="color:red;">0%</span></td>
-      <td>0.7</td>
-      <td>+0.2 ～ +1.0</td>
-      <td>×1.1 ～ ×1.25</td>
-    </tr>
-    <tr>
-      <td>あしひきのお守り</td>
-      <td><span style="color:black;">48%</span> / <span style="color:green;">25%</span> / <span style="color:blue;">17%</span> / <span style="color:purple;">9%</span> / <span style="color:gold;">1%</span> / <span style="color:red;">0%</span></td>
-      <td>0.8</td>
-      <td>+0.3 ～ +1.05</td>
-      <td>×1.1 ～ ×1.3</td>
-    </tr>
-    <tr>
-      <td>ひさかたのお守り</td>
-      <td><span style="color:black;">25%</span> / <span style="color:green;">30%</span> / <span style="color:blue;">25%</span> / <span style="color:purple;">15%</span> / <span style="color:gold;">4.99%</span> / <span style="color:red;">0.1%</span></td>
-      <td>0.9</td>
-      <td>+0.4 ～ +1.1</td>
-      <td>×1.15 ～ ×1.3</td>
-    </tr>
-    <tr>
-      <td>ちはやぶるお守り</td>
-      <td><span style="color:black;">10%</span> / <span style="color:green;">20%</span> / <span style="color:blue;">30%</span> / <span style="color:purple;">25%</span> / <span style="color:gold;">10%</span> / <span style="color:red;">5%</span></td>
-      <td>1.0</td>
-      <td>+0.5 ～ +1.2</td>
-      <td>×1.2 ～ ×1.35</td>
-    </tr>
-  </tbody>
-</table>
-<h2>護石スキル計算シミュレーター（抽選＋途中式表示）</h2>
 
-<label for="talisman">護石を選択:</label>
-<select id="talisman">
-  <option value="cc:ken_goseki_1">しろたえのお守り</option>
-  <option value="cc:ken_goseki_2">たまのおのお守り</option>
-  <option value="cc:ken_goseki_3">あかねさすお守り</option>
-  <option value="cc:ken_goseki_4">あしひきのお守り</option>
-  <option value="cc:ken_goseki_5">ひさかたのお守り</option>
-  <option value="cc:ken_goseki_6">ちはやぶるお守り</option>
-</select>
+    <div class="back"><button onclick="show('home')">⬅ 戻る</button></div>
+</section>
 
-<button onclick="simulate()">計算する</button>
+<!-- ===== 追加アイテム ===== -->
+<section id="items">
+    <header><h1>追加アイテム</h1></header>
+    <div class="mob-card">
+        <h2>金リンゴ</h2>
+        <p>再生能力II 12 s</p>
+        <p>衝撃吸収I 120s</p>
+		<p>耐性I 60s</p>
+        <p>黒閃 15%の確率 30s DMG30</p> 
+    </div>
+    <div class="back"><button onclick="show('home')">⬅ 戻る</button></div>
+</section>
 
-<div id="result"></div>
+<!-- ===== パッチノート ===== -->
+<section id="patch">
+    <header><h1>📝 パッチノート</h1></header>
+    <p>v1.0.0 初公開</p>
+    <p>v1.0.1 2026/02/05 6:00 
+        チケットの排出確率の上方修正
+        護石レシピの追加
+        襲撃者を強化
+        
+    </p>
+	<p>v1.0.2 2026/02/05 23:00 
+		ゾンビ、スケルトン、うぃーぱー、エンダーマンスキルに対応
+		エロベッドを追加
+		護石ガチャの演出を追加
+		
+    </p>
+	<p>v1.0.3 2026/02/06 0:00 
+		モブの沸き上限を150から90に変更
+		クリーパーがスケルトンに敵対しないように変更
 
+
+        
+    </p>
+    <div class="back"><button onclick="show('home')">⬅ 戻る</button></div>
+</section>
 
 <script>
-// 護石の初期値
-const initialValues = {
-  "cc:ken_goseki_1": 0.5,
-  "cc:ken_goseki_2": 0.6,
-  "cc:ken_goseki_3": 0.7,
-  "cc:ken_goseki_4": 0.8,
-  "cc:ken_goseki_5": 0.9,
-  "cc:ken_goseki_6": 1.0
-};
-
-// 護石ごとのスキル範囲
-const skillValueRanges = {
-  "cc:ken_goseki_1": { plusMin: 0.05, plusMax: 1.0, mulMin: 1.0, mulMax: 1.2 },
-  "cc:ken_goseki_2": { plusMin: 0.1, plusMax: 1.0, mulMin: 1.05, mulMax: 1.2 },
-  "cc:ken_goseki_3": { plusMin: 0.2, plusMax: 1.0, mulMin: 1.1, mulMax: 1.25 },
-  "cc:ken_goseki_4": { plusMin: 0.3, plusMax: 1.05, mulMin: 1.1, mulMax: 1.3 },
-  "cc:ken_goseki_5": { plusMin: 0.4, plusMax: 1.1, mulMin: 1.15, mulMax: 1.3 },
-  "cc:ken_goseki_6": { plusMin: 0.5, plusMax: 1.2, mulMin: 1.2, mulMax: 1.35 }
-};
-
-// 護石ごとのレア度確率（コモン→ミシック）
-const rarityChancesByItem = {
-  "cc:ken_goseki_1": [0.85, 0.10, 0.05, 0.00, 0.00, 0.00],
-  "cc:ken_goseki_2": [0.70, 0.15, 0.10, 0.05, 0.00, 0.00],
-  "cc:ken_goseki_3": [0.63, 0.18, 0.13, 0.055, 0.005, 0.00],
-  "cc:ken_goseki_4": [0.48, 0.25, 0.17, 0.09, 0.01, 0.00],
-  "cc:ken_goseki_5": [0.25, 0.30, 0.25, 0.15, 0.0499, 0.001],
-  "cc:ken_goseki_6": [0.10, 0.20, 0.30, 0.25, 0.10, 0.05]
-};
-
-// レア度の抽選回数
-const drawCountByRarity = [1,2,3,4,5,6];
-const rarityNames = ["コモン","アンコモン","レア","エピック","レジェンダリー","ミシック"];
-
-// ランダムに加算か乗算を返す
-function randomPlusOrMul(range) {
-  const isPlus = Math.random() < 0.5;
-  if (isPlus) {
-    const plus = Math.random() * (range.plusMax - range.plusMin) + range.plusMin;
-    return { type: '+', value: parseFloat(plus.toFixed(2)), min: range.plusMin, max: range.plusMax };
-  } else {
-    const mul = Math.random() * (range.mulMax - range.mulMin) + range.mulMin;
-    return { type: '×', value: parseFloat(mul.toFixed(2)), min: range.mulMin, max: range.mulMax };
-  }
+function show(id) {
+    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    window.scrollTo(0,0);
 }
-
-// レア度を抽選
-function drawRarity(item) {
-  const chances = rarityChancesByItem[item];
-  const r = Math.random();
-  let sum = 0;
-  for(let i=0;i<chances.length;i++){
-    sum += chances[i];
-    if(r < sum) return i;
-  }
-  return chances.length-1;
-}
-
-function simulate() {
-  const talisman = document.getElementById("talisman").value;
-  const rarityIndex = drawRarity(talisman);
-  const rarityName = rarityNames[rarityIndex];
-  const drawCount = drawCountByRarity[rarityIndex];
-
-  let value = initialValues[talisman];
-  const steps = [];
-  const range = skillValueRanges[talisman];
-
-  for (let i = 0; i < drawCount; i++) {
-    const step = randomPlusOrMul(range);
-    if(step.type === '+') value += step.value;
-    else value *= step.value;
-    steps.push(step);
-  }
-
-  // テーブル作成
-  let tableHtml = '<table><tr><th>回数</th><th>操作</th><th>値</th><th>範囲</th></tr>';
-  let currentValue = initialValues[talisman];
-  steps.forEach((s,i)=>{
-    let rangeText = s.type === '+' ? `+${s.min}〜+${s.max}` : `×${s.min}〜×${s.max}`;
-    tableHtml += `<tr>
-      <td>${i+1}</td>
-      <td>${s.type}</td>
-      <td>${s.value}</td>
-      <td>${rangeText}</td>
-    </tr>`;
-    currentValue = s.type === '+' ? currentValue + s.value : currentValue * s.value;
-  });
-  tableHtml += '</table>';
-
-  document.getElementById("result").innerHTML = `
-    <p>初期値: ${initialValues[talisman]}</p>
-    <p>抽選されたレア度: ${rarityName}（抽選回数: ${drawCount}）</p>
-    ${tableHtml}
-    <p>最終スキル値: ${value.toFixed(3)}</p>
-  `;
-}
-</script>
-
-
-</div>
-
-
-<div id="note" class="section">
-  <h2>パッチノート</h2>
-  <label for="version">バージョンを選択:</label>
-  <select id="version">
-    <option value="">--選択してください--</option>
-    <option value="1.0">v1.0</option>
-    <option value="1.03">v1.03</option>
-    <option value="1.06">v1.06</option>
-    <option value="1.1">v1.1</option>
-  </select>
-
-  <div id="patch-content" style="margin-top:15px;"></div>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const patchNotes = {
-    "1.0": `
-      <h3>v1.0</h3>
-      <p>初期リリース(2025/8/21)</p>
-    `,
-    "1.03": `
-      <h3>v1.03</h3>
-      <p>(2025/8/22)</p>
-      <ul>
-        <li>クリーパー</li>
-        <ul>
-          <li>♡20が♡25になっていた問題を修正</li>
-          <li>爆発までの時間を1.3sから1.5sに変更</li>
-          <li>爆発時に火を発生しなくなりました</li>
-          <li>スケルトンに攻撃された場合敵対しなくなりました</li>
-        </ul>
-        <li>スケルトン</li>
-        <ul>
-          <li>弾速を2.1から2.05に修正</li>
-          <li>与えるダメージの範囲を[1,5]から[2,5]に変更</li>
-        </ul>
-        <li>ゾンビの攻撃力が反映されていない問題を修正</li>
-        <li>ウシを攻撃したときのバグを修正</li>
-        <li>ウィッチの♡40から♡45に変更</li>
-        <li>ドラウンドの射程を15から25に変更</li>
-        <li>洞窟クモの♡24から♡40, ⚔4から⚔6に変更</li>
-        <li>TNTの威力を50から150に変更</li>
-        <li>ブロックの設置、破壊をカウントする機能の実装</li>
-        <li>橋脇コインの試験的な実装</li>
-    `,
-    "1.06": `
-    <h3>v1.06/h3>
-      <p>リソースパックアップデート第一弾(2025/8/23)</p>
-      <ul>
-        <li>護ドームのクラフトが3個から4個に変更しました</li>
-        <li>護ドームの中にいると再生Iが付与されるようになりました</li>
-        <li>tntの爆発力を150から400に変更</li>
-        <li>カスタムされた絵テクスチャを追加しました</li>
-        <li>モブの体力インジケーターを導入しました</li>
-      </ul>
-    `,
-    "1.1": `
-      <h3>v1.1</h3>
-      <p>ヴァンデイケーターズアップデート(2025/8/25)</p>
-      <ul>
-        <li>体力増強の護石の効果を強化しました</li>
-        <li>護ドームの中にいると一定時間毎に♡２回復するようになりました/li>
-        <li>ヴィンディケータの♡75から♡110に変更するように指示されました</li>
-        <li>エヴォーカーの魔法を２種類追加しました</li>
-        <li>橋脇護鉄塊を追加しました</li>
-        <li>橋脇護鉄塊はすべての敵モブ(※一部対象外)から1パーセントでドロップします</li>
-        <li>ガストの♡25から♡28に変更しました</li>
-        <li>TNTの爆発力を400から600に変更</li>
-      </ul>
-    `
-  };
-
-  const select = document.getElementById("version");
-  const content = document.getElementById("patch-content");
-
-  select.addEventListener("change", () => {
-    const version = select.value;
-    content.innerHTML = patchNotes[version] || "<p>このバージョンの情報はありません。</p>";
-  });
-});
-</script>
-
-  </div>
-
-
-</div>
-
-<footer>
-  更新日:2025/08/25 23:33<br>
-  @よっわ<br>
-</footer>
-
-<script>
-  const select = document.getElementById('category');
-  const sections = document.querySelectorAll('.section');
-
-  select.addEventListener('change', function () {
-    const value = this.value;
-
-    sections.forEach(section => {
-      section.classList.toggle('active', section.id === value);
-    });
-  });
 </script>
 
 </body>
